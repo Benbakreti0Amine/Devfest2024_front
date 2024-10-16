@@ -4,16 +4,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cache/cachehelper.dart';
 import 'core/api/dio_consumer.dart';
-import 'cubit/user_cubit.dart';
-import 'screens/sign_in_screen.dart';
+import 'representation/cubit/user_cubit.dart';
+import 'representation/cubit/user_signupcubit.dart';
+import 'representation/screens/sign_in_screen.dart';
 
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   CacheHelper().init();
   runApp(
-    BlocProvider(
-      create: (context) => UserCubit(DioConsumer(dio: Dio())),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SignInCubit(DioConsumer(dio: Dio())),
+        ),
+        BlocProvider(
+          create: (context) => SignUpCubit(DioConsumer(dio: Dio())),
+        ),
+      ],
       child: const MyApp(),
     ),
   );

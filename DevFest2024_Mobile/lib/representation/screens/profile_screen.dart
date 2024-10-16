@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happy_tech_mastering_api_with_flutter/cubit/user_cubit.dart';
-import 'package:happy_tech_mastering_api_with_flutter/cubit/user_state.dart';
-import 'package:happy_tech_mastering_api_with_flutter/models/get_user_model.dart';
+
+import '../../data/models/get_user_model.dart';
+import '../cubit/user_cubit.dart';
+import '../cubit/user_state.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
+    return BlocConsumer<SignInCubit, UserState>(
       listener: (context, state) {
         // if (state is SignInFailure) {
         //   ScaffoldMessenger.of(context).showSnackBar(

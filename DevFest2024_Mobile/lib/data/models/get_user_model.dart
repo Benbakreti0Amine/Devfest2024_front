@@ -1,4 +1,5 @@
-import '../core/api/end_ponits.dart';
+
+import '../../core/api/end_ponits.dart';
 
 class GetUserModel {
   final int id;

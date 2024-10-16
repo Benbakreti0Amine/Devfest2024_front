@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happy_tech_mastering_api_with_flutter/screens/profile_screen.dart';
 
 import '../cubit/user_cubit.dart';
 import '../cubit/user_state.dart';
-import '../widgets/custom_form_button.dart';
-import '../widgets/custom_input_field.dart';
-import '../widgets/dont_have_an_account.dart';
-import '../widgets/forget_password_widget.dart';
-import '../widgets/page_header.dart';
-import '../widgets/page_heading.dart';
+import 'profile_screen.dart';
+import 'widgets/custom_form_button.dart';
+import 'widgets/custom_input_field.dart';
+import 'widgets/dont_have_an_account.dart';
+import 'widgets/forget_password_widget.dart';
+import 'widgets/page_header.dart';
+import 'widgets/page_heading.dart';
+
 
 
 class SignInScreen extends StatelessWidget {
@@ -19,7 +20,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: BlocConsumer<UserCubit, UserState>(
+      child: BlocConsumer<SignInCubit, UserState>(
         listener: (context, state) {
           if (state is SignInSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -27,7 +28,7 @@ class SignInScreen extends StatelessWidget {
                 content: Text("success"),
               ),
             );//
-            context.read<UserCubit>().getUserData();
+            context.read<SignInCubit>().getUserData();
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -58,7 +59,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                     child: SingleChildScrollView(
                       child: Form(
-                        key: context.read<UserCubit>().signInFormKey,
+                        key: context.read<SignInCubit>().signInFormKey,
                         child: Column(
                           children: [
                             const PageHeading(title: 'Sign-in'),
@@ -66,7 +67,7 @@ class SignInScreen extends StatelessWidget {
                             CustomInputField(
                               labelText: 'Email',
                               hintText: 'Your email',
-                              controller: context.read<UserCubit>().signInEmail,
+                              controller: context.read<SignInCubit>().signInEmail,
                             ),
                             const SizedBox(height: 16),
                             //!Password
@@ -76,7 +77,7 @@ class SignInScreen extends StatelessWidget {
                               obscureText: true,
                               suffixIcon: true,
                               controller:
-                                  context.read<UserCubit>().signInPassword,
+                                  context.read<SignInCubit>().signInPassword,
                             ),
                             const SizedBox(height: 16),
                             ForgetPasswordWidget(size: size),
@@ -86,7 +87,7 @@ class SignInScreen extends StatelessWidget {
                                 : CustomFormButton(
                                     innerText: 'Sign In',
                                     onPressed: () {
-                                      context.read<UserCubit>().signIn();
+                                      context.read<SignInCubit>().signIn();
                                     },   
                                   ),
                             const SizedBox(height: 18),

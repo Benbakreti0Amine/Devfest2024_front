@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../screens/sign_up_screen.dart';
+import '../sign_up_screen.dart';
+
 
 class DontHaveAnAccountWidget extends StatelessWidget {
   const DontHaveAnAccountWidget({
